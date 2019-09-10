@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{48285317-CEF8-44E8-BD84-9839A37461C9}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="tinyxml2_test.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="tinyxml2.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="tinyxml2_test">
+        <MSBuild Projects="tinyxml2_test.cbproj"/>
+    </Target>
+    <Target Name="tinyxml2_test:Clean">
+        <MSBuild Projects="tinyxml2_test.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="tinyxml2_test:Make">
+        <MSBuild Projects="tinyxml2_test.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="tinyxml2">
+        <MSBuild Projects="tinyxml2.cbproj"/>
+    </Target>
+    <Target Name="tinyxml2:Clean">
+        <MSBuild Projects="tinyxml2.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="tinyxml2:Make">
+        <MSBuild Projects="tinyxml2.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="tinyxml2_test;tinyxml2"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="tinyxml2_test:Clean;tinyxml2:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="tinyxml2_test:Make;tinyxml2:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
